@@ -38,39 +38,6 @@ class ProgramsController < ApplicationController
     # Your code goes below.
     dice_possibilities=(1..6).to_a
     dice_outcome=[]
-
-    players=["jP","alvaro","manu","nacho","paulsen"]
-    dice_total=[]
-    c=0
-
-    for i in (0..players.count)
-
-      while dice_outcome.length<5
-        # for i in 0..5
-        c=dice_possibilities.sample
-        dice_outcome.push(c)
-
-      end
-      dice_total[i]=dice_total.push(dice_outcome)
-    end
-
-    jugador_numero=1
-
-    @Jugador1 = "#{dice_total[0][0]}"
-
-
-
-    render("programs/first_program.html.erb")
-  end
-
-
-
-  # *******************************
-  def second_program
-
-    # Your code goes below.
-    dice_possibilities=(1..6).to_a
-    dice_outcome=[]
     c=0
     while dice_outcome.length<5
       # for i in 0..5
@@ -81,6 +48,36 @@ class ProgramsController < ApplicationController
     jugador_numero=1
 
     @your_output = "Jugador N°#{jugador_numero}: #{dice_outcome}"
+    render("programs/first_program.html.erb")
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def second_program
+
+    our_numbers = [4, 10, 6]        # Create an array of numbers
+    squared_numbers = []            # Create an empty array
+
+    our_numbers.each do |num|       # For each element in numbers, (refer to it as "num")
+      square = num * num            # Square the number
+      squared_numbers.push(square)  # Push it into the squared_numbers array
+    end
+
+    @your_output = squared_numbers.sum  # Sum the squares
 
     render("programs/second_program.html.erb")
   end
