@@ -36,27 +36,43 @@ class ProgramsController < ApplicationController
 
   def first_program
     # Your code goes below.
-    dice_possibilities=(1..6).to_a
-    dice_outcome=[]
+    #trying to do a dice game
 
-    players=["jP","alvaro","manu","nacho","paulsen"]
-    dice_total=[]
+
+
+    players_array=["John","Peter","Pablo","Patel","Tim"]
+    result_matrix=[] #matrix of players.count x 5
     c=0
+    require 'Matrix'
+    m = Matrix[]
+    dice_total=[]
 
-    for i in (0..players.count)
+    for i in (0..players_array.count)
+      dice_outcome=[] #the result of each throw will be stored in this array
 
-      while dice_outcome.length<5
+      while dice_outcome.length < 5
         # for i in 0..5
-        c=dice_possibilities.sample
-        dice_outcome.push(c)
+        c=rand(6)+1 #the possible result of any dice
+        dice_outcome.push(c) #will store rand(6) in every location of array
 
       end
+
       dice_total[i]=dice_total.push(dice_outcome)
+      result_matrix = Matrix.rows(result_matrix.to_a << dice_outcome)
+
     end
+    ones = result_matrix.count(1)
+    twos = result_matrix.count(2)
+    threes = result_matrix.count(3)
+    fours = result_matrix.count(4)
+    fives = result_matrix.count(5)
+    sixes  = result_matrix.count(6)
+
+    results_type =[ones,twos,threes,fours,fives,sixes]
 
     jugador_numero=1
 
-    @Jugador1 = "#{dice_total[0][0]}"
+    @Jugador1 = "#{results_type} /////  #{result_matrix}"
 
 
 
@@ -85,6 +101,7 @@ class ProgramsController < ApplicationController
     render("programs/second_program.html.erb")
   end
 
+  # **********************************
   def third_program
 
     # Your code goes below.
